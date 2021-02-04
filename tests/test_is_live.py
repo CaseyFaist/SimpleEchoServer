@@ -5,4 +5,4 @@ def test_ping():
 
     response = app.test_client().get('/')
     assert response.status_code == 200
-    assert response.data == b"Hello! I'll echo what you send me!"
+    assert response.data == "Hello! I will echo whatever you send me!".encode("UTF_8")
