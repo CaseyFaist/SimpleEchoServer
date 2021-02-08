@@ -4,3 +4,4 @@ __pycache__
 .vscode
 cert.pem
 key.pem
+.pytest_cache
