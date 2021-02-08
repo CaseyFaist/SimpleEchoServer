@@ -12,44 +12,43 @@ A simple Flask-based echo server.
 
 ### Local config
 
-<!-- add git clone steps -->
 ```bash
+git clone https://github.com/CaseyFaist/SimpleEchoServer.git
 cd SimpleEchoServer
 make venv
 
 # make runs in a subprocess, so we need to activate the virtualenv manually before proceeding
-
 source .venv/bin/activate
 
 make install
 make secret ReplaceThisWithYourSecretKey
 ```
 
-At this point, you should be able to run the following command:
+At this point, you should be able to run the tests:
 
 ```bash
 pytest
 ```
 
-and finally, to get the endpoint at ```http://localhost:8000``` up and running:
+and finally, to get the endpoint at `http://localhost:8000` up and running:
 
 ```bash
 flask run
 ```
 
-To enable ```HTTPS```, you can use the ```make secure``` command provided to generate self-signed cert/key pem files - this will keep you from needing to click through the self-signed cert warning should you wish to check the endpoint in a browser. Once you've filled out the interactive prompt, pass the key files to flask with this new command:
+To enable `HTTPS`, you can use the `make secure` command provided to generate self-signed cert/key pem files - this will keep you from needing to click through the self-signed cert warning should you wish to check the endpoint in a browser. Once you've filled out the interactive prompt, pass the key files to flask with this new command:
 
 ```bash
 flask run --cert=cert.pem --key=key.pem
 ```
 
-Alternatively, if OpenSSL isn't an option and don't mind clicking through the self-signed cert warning, use Flask's built-in "adhoc" cert:
+Alternatively, if OpenSSL isn't an option and you don't mind clicking through the self-signed cert warning, use Flask's built-in "adhoc" cert:
 
 ```bash
 flask run --cert=adhoc
 ```
 
-_Note:_ this option requires the PyOpenSSL package to be installed in the virtual environment. It's included, but wanted to highlight that this package is only required if using flask's adhoc cert feature.
+_Note:_ this option requires the PyOpenSSL package to be installed in the virtual environment. It's included in `requirements.txt`, but wanted to highlight that this package is only required if using flask's adhoc cert feature.
 
 ## POST request to "/" endpoint
 
@@ -102,8 +101,8 @@ Makefiles run in subprocesses! I wanted _so bad_ for the initial project setup t
 
 It's a huge security risk to include dotfiles in repos, but as no important secrets are stored and the contents are required to make the application run as intended, I broke that rule to keep the onboarding simple. 
 
-Normally for onboarding documentation, even with simple non-secret-containing dotfiles, I prefer to include a `dotfile_EXAMPLE` to avoid any risk of the real thing being checked. But, I did not want onboarding steps that I could easily include for reviewer convenience, and the only secret involved is set using the `make secret` command at the beginning.
+Normally for onboarding documentation, even with simple non-secret-containing dotfiles, I prefer to include a `dotfile_EXAMPLE` to avoid any risk of the real thing being checked. But, I did not want to complicate the onboarding steps wheb I could easily include this for reviewer convenience, and the only secret involved is set using the `make secret` command at the beginning.
 
 ### pytest.ini
 
-I spent more time than I wish to admit fighting to get environment-aware tests due to a bit of unfamiliarity with pytest env management. This is a restriction of pytest, and while it's actually good for a testing framework to force users to be explicit about testing assumptions, I could have bailed on demonstrating the `secret_key` functionality in tests and focused on a wider variety of test inputs, or perhaps restricted endputs. I did not do that - I traded more robust testing on part of my features for complete but shallow testing for all of my intended features. It would have been great to have both, but I stand by my choice.
+I spent more time than I wished fighting to get environment-aware tests due to a bit of unfamiliarity with pytest env management. This is a restriction of pytest, and while it's actually good for a testing framework to force users to be explicit about testing assumptions, I could have bailed on demonstrating the `secret_key` functionality in tests and focused on a wider variety of test inputs, or perhaps restricted endputs. I did not do that - I traded more robust testing on part of my features for complete but shallow testing for all of my intended features. It would have been great to have both, but I stand by my choice.
